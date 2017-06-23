@@ -1,0 +1,71 @@
+#!/bin/bash
+if [[ $# -eq 4 ]] ; then
+  while getopts "f:s:" option; do
+    case $option in
+      f ) folder=$OPTARG
+      ;;
+      s ) status=$OPTARG
+      ;;
+    esac
+  done
+  echo $status
+  if [ $status = 'lock' ] ; then
+    chattr +i $folder
+  elif [ $status = 'unlock' ] ; then
+    chattr -i $folder
+  else
+    echo "Bad arg status, for help : -h"
+    exit 0
+  fi
+  exit 0
+fi
+
+if [[ $# -eq 6 ]] ; then
+  while getopts "f:s:e:" option; do
+    case $option in
+      f ) folder=$OPTARG
+      ;;
+      s ) status=$OPTARG
+      ;;
+      e ) exclusions=$OPTARG
+      ;;
+    esac
+  done
+  if [[ $status = 'lock' ]] ; then
+    chattr +i $folder
+  elif [[ $status = 'unlock' ]] ; then
+    chattr -i $folder
+  else
+    echo "Bad arg status, for help : -h"
+    exit 0
+  fi
+  while IFS='' read -r line || [[ -n "$line" ]]; do
+      chattr -i $line
+  done < "$exclusion"
+  exit 0
+fi
+
+if [[ $1 -eq "-h" ]] ; then
+  echo 'DESCRIPTION'
+  echo '     This script restrict the writing access to your folders.'
+  echo $'     You can pass a file that contain exclusions.\n'
+  echo $'     More info : man chattr\n'
+  echo 'USAGE'
+  echo $'     attr_manage [-f []] [-s [lock][unlock]] [-e []]\n'
+  echo 'OPTIONS'
+  echo '    -f [folder]                                mandatory'
+  echo '    -s [status of install folder]              mandatory'
+  echo '    -e [exclude file]                          optionnal'
+  echo $'    -h help\n'
+  echo 'EXCEPTION FILE'
+  echo $'     One path by line\n'
+  echo 'EXAMPLES'
+  echo '     Lock and add exception :'
+  echo '         attr_manage -f /var/www/lock -s lock -e /home/user/exception'
+  echo '     Unlock :'
+  echo $'        attr_manage -f /var/www/lock -s unlock\n'
+  echo $'    $ cat /home/user/exclusion'
+  echo '     /var/www/lock/static-folder'
+  echo '     /var/www/lock/static-folder2'
+  exit 1
+fi
