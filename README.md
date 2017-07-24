@@ -28,6 +28,10 @@ attr_manage
 ```
 attr_manage [-f []] [-s [lock][unlock]] [-e []]
 ```
+```
+attr_manage -f $PATH -s lock -e $EXCLUSIONS
+attr_manage -f $PATH -s unlock
+```
 ## OPTIONS
 ```
 -f [folder]                                mandatory
