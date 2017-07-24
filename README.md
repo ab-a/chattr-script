@@ -13,7 +13,7 @@ More info : man chattr
 ```
 cd /opt
 git clone https://github.com/ab-a/chattr-script.git
-chmod +x chattr-script/attr_manage && ln -s /opt/chattr-script/attr_manage /usr/bin
+chmod +x chattr-script/attr_manage && ln -s /opt/chattr-script/attr_manage /usr/local/bin
 ```
 Reload the shell : 
 ```
