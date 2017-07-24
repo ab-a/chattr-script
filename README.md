@@ -8,6 +8,21 @@ You can pass a file that contain exclusions.
 
 More info : man chattr
 
+## Installation
+
+```
+cd /opt
+git clone https://github.com/ab-a/chattr-script.git
+chmod +x chattr-script/attr_manage && ln -s /opt/chattr-script/attr_manage /usr/bin
+```
+Reload the shell : 
+```
+. ~/.bashrc
+```
+Check :
+```
+attr_manage
+```
 ## USAGE
 
 ```
