@@ -1,5 +1,5 @@
 # chattr-script
-Script that help you to use chattr 
+Script that make chattr command more friendly  
 
 ## DESCRIPTION
 This script restrict the writing access to your folders.
