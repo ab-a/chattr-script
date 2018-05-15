@@ -1,3 +1,5 @@
+[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE)
+
 # chattr-script
 Script that make chattr command more friendly  
 
